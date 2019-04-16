@@ -1,0 +1,167 @@
+a:1:{s:5:"form1";a:47:{s:7:"button1";a:1:{s:11:"onmousedown";s:13:"updatemail();";}s:9:"progress2";N;s:9:"progress3";N;s:6:"label8";N;s:6:"label9";N;s:7:"button3";a:1:{s:11:"onmousedown";s:116:"c("timer1")->enable = true;
+c("timer2")->enable = true;
+c("countlist1")->text = "0";
+c("countlist2")->text = "0";";}s:8:"listbox3";N;s:9:"progress4";N;s:6:"cancel";N;s:7:"service";N;s:6:"timer1";a:1:{s:7:"ontimer";s:548:"$count1 = c("listBox1")->items->count;
+$numc1 = c("countlist1")->text;
+$file = c("memo1")->text;
+$put1 = "data\\opened.txt";
+///////////////////////////////
+if ($numc1 != $count1)
+{
+c("listBox1")->itemIndex = $numc1;
+$list = c("listBox1")->items->selected;
+if(preg_match("($list)", $file))
+{
+}
+else
+{
+file_put_contents ("$put1", "$list\n", FILE_APPEND);
+}
+$numc1 = $numc1+1;
+c("countlist1")->text = $numc1;
+}
+else
+{
+c("timer1")->enable = false;
+echo ("Фильтрация завершена, файлы сохранены");
+}
+/////////////////////////////";}s:10:"countlist1";N;s:10:"countlist2";N;s:5:"memo1";N;s:6:"timer2";a:1:{s:7:"ontimer";s:502:"$count2 = c("listBox2")->items->count;
+$numc2 = c("countlist2")->text;
+$file = c("memo1")->text;
+$put2 = "data\\linked.txt";
+///////////////////////////////
+if ($numc2 != $count2)
+{
+c("listBox2")->itemIndex = $numc2;
+$list2 = c("listBox2")->items->selected;
+if(preg_match("($list2)", $file))
+{
+}
+else
+{
+file_put_contents ("$put2", "$list2\n", FILE_APPEND);
+}
+$numc2 = $numc2+1;
+c("countlist2")->text = $numc2;
+}
+else
+{
+c("timer2")->enable = false;
+}
+/////////////////////////////";}s:7:"button4";a:1:{s:11:"onmousedown";s:26:"exec ("data\\linked.txt");";}s:7:"button2";a:1:{s:11:"onmousedown";s:243:"if (messageBox("Вы уверены?", "Подтверждение", MB_YESNO) == idYes)
+{
+        file_put_contents ("data\\opened.txt","");
+        file_put_contents ("data\\linked.txt","");
+        echo "Очищено!";
+}
+else
+{
+        echo "Не очищено!";
+}";}s:7:"button5";a:1:{s:11:"onmousedown";s:282:"$serv = c("service")->text;
+$pass = c("edit2")->text;
+if (messageBox("Вы уверены?", "Подтверждение", MB_YESNO) == idYes)
+{
+        file_get_contents ("$serv/mail/clear.php?pass=$pass");
+        updatemail();
+        echo "Очищено!";
+}
+else
+{
+        echo "Не очищено!";
+}";}s:5:"edit2";N;s:6:"label1";N;s:5:"edit1";a:0:{}s:7:"button8";N;s:7:"button7";N;s:8:"button10";a:1:{s:11:"onmousedown";s:26:"exec ("data\\opened.txt");";}s:10:"updatemail";a:1:{s:9:"onexecute";s:1011:"//////////data/////////
+$dat1 = c("edit1")->text;
+if($dat1 == "")
+{
+echo ("Не введен объем базы");
+}
+else
+{
+$pass = c("edit2")->text;
+$srv = c("service")->text;
+$data2 = file_get_contents ("$srv/mail/viewp.php?id=$pass");
+$data3 = file_get_contents ("$srv/mail/viewo.php?id=$pass");
+$data4 = file_get_contents ("$srv/mail/viewc.php?id=$pass");
+c("listBox1")->text =$data2;
+c("listBox2")->text =$data3;
+c("listBox3")->text =$data4;
+c("memo1")->text =$data4;
+$dat2 = c("listBox1")->items->count;
+$dat3 = c("listBox2")->items->count;
+$dat4 = c("listBox3")->items->count;
+////////////////////////
+c("progress1")->max = "$dat1";
+c("progress1")->position = "$dat1";
+c("label7")->text = "$dat1";
+c("progress2")->max = "$dat1";
+c("progress2")->position = $dat2-1;
+c("label8")->text = $dat2-1;
+c("progress3")->max = "$dat1";
+c("progress3")->position = $dat3-1;
+c("label9")->text = $dat3-1;
+c("progress4")->max = "$dat1";
+c("progress4")->position = $dat4-1;
+c("cancel")->text = $dat4-1;
+}";}s:6:"pages1";a:1:{s:8:"onchange";s:22:"с("edit1")->text = "";";}s:9:"progress5";N;s:9:"progress6";N;s:7:"label10";N;s:7:"label19";N;s:7:"label20";N;s:7:"label22";N;s:7:"label23";N;s:8:"button17";N;s:11:"updatephone";a:1:{s:9:"onexecute";s:530:"//////////data/////////
+$dat1 = c("edit1")->text;
+if($dat1 == "")
+{
+echo ("Не введен объем базы");
+}
+else
+{
+$pass = c("edit2")->text;
+$srv = c("service")->text;
+$data2 = file_get_contents ("$srv/phone/view.php?id=$pass");
+c("listBox5")->text =$data2;
+$dat2 = c("listBox5")->items->count;
+
+////////////////////////
+c("progress5")->max = "$dat1";
+c("progress5")->position = "$dat1";
+c("label20")->text = "$dat1";
+c("progress6")->max = "$dat1";
+c("progress6")->position = $dat2-1;
+c("label10")->text = $dat2-1;
+}";}s:8:"button11";a:1:{s:11:"onmousedown";s:14:"updatephone();";}s:8:"button18";N;s:8:"button20";a:1:{s:11:"onmousedown";s:64:"$lnk = c("service")->text;
+Run("$lnk/phone/ldata.html", false);";}s:8:"button19";a:1:{s:11:"onmousedown";s:64:"$lnk = c("service")->text;
+Run("$lnk/phone/adata.html", false);";}s:8:"button12";a:1:{s:11:"onmousedown";s:131:"$txt = c("listBox5")->text;
+$fp = fopen("data\\data-phones.txt", "w");
+fwrite($fp, $txt);
+fclose($fp);
+MessageBox("DONE!", "");";}s:8:"button13";a:1:{s:11:"onmousedown";s:31:"exec ("data\\data-phones.txt");";}s:8:"button16";a:1:{s:11:"onmousedown";s:239:"if (messageBox("Вы уверены?", "Подтверждение", MB_YESNO) == idYes)
+{
+        $fp = fopen("data\\data-phones.txt", "w");
+        fwrite($fp, "");
+        fclose($fp);
+        echo "Очищено!";
+}
+else
+{
+        echo "Не очищено!";
+}";}s:8:"button14";a:1:{s:11:"onmousedown";s:317:"$serv = c("service")->text;
+$pass = c("edit2")->text;
+if (messageBox("Вы уверены?", "Подтверждение", MB_YESNO) == idYes)
+{
+        file_get_contents ("$serv/phone/clear.php?pass=$pass");
+        updatephone();
+        c("label10")->text = 0;
+        echo "Очищено!";
+}
+else
+{
+        echo "Не очищено!";
+}";}s:8:"button15";a:1:{s:11:"onmousedown";s:286:"$serv = c("service")->text;
+$pass = c("edit2")->text;
+if (messageBox("Вы уверены?", "Подтверждение", MB_YESNO) == idYes)
+{
+        file_get_contents ("$serv/phone/cleardb.php?pass=$pass");
+        updatephone();
+        echo "Очищено!";
+}
+else
+{
+        echo "Не очищено!";
+}";}s:6:"image2";N;s:8:"--fmedit";a:1:{s:6:"onshow";s:178:"$info = parse_ini_file('config.ini', true);
+c("service")->text = $info['main']['service'];
+c("edit2")->text = $info['main']['pass'];
+c("edit1")->text = $info['main']['count'];";}s:8:"button21";a:1:{s:11:"onmousedown";s:20:"exec ("config.ini");";}}}
